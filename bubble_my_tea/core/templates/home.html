@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="bg-[#FFE6E6]">
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">Sip N' Bubbles</h1>
+                <p class="max-w-2xl my-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray">
+                    Plongez dans une oasis de saveurs avec nos bubble teas artisanaux, concoctés pour éveiller vos sens et pimenter votre journée. Chez Sip N' Bubbles, nous croyons que la vie est plus savoureuse avec un peu de fantaisie dans votre tasse. 
+                </p>
+                <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                    Have a Sip!
+                </a> 
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+                <img src="https://png.pngtree.com/png-clipart/20230425/original/pngtree-real-shot-of-party-drink-pearl-milk-tea-png-image_9096994.png" alt="mockup">
+            </div>                
+        </div>
+    </section>
+
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 class="text-3xl mb-10 font-bold tracking-tight text-gray-900">Nos Bubbles Tea</h2>
+
+            <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+        {% for product in products %}
+        <div class="group relative">
+            {% load static %}
+            <div class="aspect-h-1 flex justify-center aspect-w-1 w-full overflow-hidden rounded-md bg-[#FFE6E6] lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <!-- Update the link here -->
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{% static product.image %}" alt="{{ product.name }}" class="w-32 object-cover object-center">
+                </a>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="font-medium text-black">
+                        <a href="{% url 'product_detail' product.id %}">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            {{ product.name }}
+                        </a>
+                    </h3>
+                    <p class="mt-1 text-sm text-white">{{ product.description }}</p>
+                </div>
+                <p class="text-sm font-medium text-black">{{ product.price }}€</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+  
+{%endblock%}
+
